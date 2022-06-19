@@ -40,6 +40,15 @@ function root(num, root = 2) {
 
 
 /***** Degree and Radian *****/
+var __default_angle_unit = "deg";
+
+function setDefaultAngleUnit(unit) {
+	if (unit === "deg" || unit == "rad")
+		return __default_angle_unit = unit;
+
+	throw Error("INVALID_UNIT");
+}
+
 function deg2rad(deg) {
 	return deg*PI()/180
 }
@@ -50,15 +59,6 @@ function rad2deg(rad) {
 /**/
 
 /***** Trigonometric Functions *****/
-var __default_angle_unit = "deg";
-
-function setDefaultAngleUnit(unit) {
-	if (unit === "deg" || unit == "rad")
-		return __default_angle_unit = unit;
-
-	throw Error("INVALID_UNIT");
-}
-
 function _trig_factory(method) {
 	return function (num, unit = __default_angle_unit) {
 		if (unit === "deg") {
