@@ -1,0 +1,16 @@
+{
+  "name": "@hizollo/hizollo-script-modules",
+  "version": "1.0.0",
+  "description": "A pack of modules for HiZollo Script provided by HiZollo Official.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "HiZollo Dev Team",
+  "license": "MIT",
+  "dependencies": {
+    "uglify-js": "^3.16.1"
+  }
+}
