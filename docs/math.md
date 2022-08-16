@@ -46,16 +46,16 @@
 - `arccsc(a, unit)`：a 的反餘割值，角度輸出使用預設單位，可以在 `unit` 參數填入 `"deg"` 表示角度或 `"rad"` 表示孤度
 
 ## 雙曲函數
-- `sinh(a, unit)`：a 的雙曲正弦值
-- `cosh(a, unit)`：a 的雙曲餘弦值
-- `tanh(a, unit)`：a 的雙曲正切值
-- `coth(a, unit)`：a 的雙曲餘切值
-- `sech(a, unit)`：a 的雙曲正割值
-- `csch(a, unit)`：a 的雙曲餘割值
+- `sinh(a)`：a 的雙曲正弦值
+- `cosh(a)`：a 的雙曲餘弦值
+- `tanh(a)`：a 的雙曲正切值
+- `coth(a)`：a 的雙曲餘切值
+- `sech(a)`：a 的雙曲正割值
+- `csch(a)`：a 的雙曲餘割值
 
-- `arcsinh(a, unit)`：a 的反雙曲正弦值
-- `arccosh(a, unit)`：a 的反雙曲餘弦值
-- `arctanh(a, unit)`：a 的反雙曲正切值
-- `arccoth(a, unit)`：a 的反雙曲餘切值
-- `arcsech(a, unit)`：a 的反雙曲正割值
-- `arccsch(a, unit)`：a 的反雙曲餘割值
+- `arcsinh(a)`：a 的反雙曲正弦值
+- `arccosh(a)`：a 的反雙曲餘弦值
+- `arctanh(a)`：a 的反雙曲正切值
+- `arccoth(a)`：a 的反雙曲餘切值
+- `arcsech(a)`：a 的反雙曲正割值
+- `arccsch(a)`：a 的反雙曲餘割值
