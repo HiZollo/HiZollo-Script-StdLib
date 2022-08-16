@@ -11,6 +11,7 @@
   "author": "HiZollo Dev Team",
   "license": "MIT",
   "dependencies": {
+    "@hizollo/hzscript": "^1.1.0",
     "uglify-js": "^3.16.1"
   }
 }
