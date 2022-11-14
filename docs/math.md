@@ -59,3 +59,18 @@
 - `arccoth(a)`：a 的反雙曲餘切值
 - `arcsech(a)`：a 的反雙曲正割值
 - `arccsch(a)`：a 的反雙曲餘割值
+
+## 常用函式
+- `abs(a)`：計算 a 的絕對值
+- `random()`：獲得 [0, 1) 之間的隨機數值
+- `ceil(a)`：無條件進位 a
+- `floor(a)`：無條件捨去 a
+- `round(a)`：四捨五入 a
+- `mod(a, b)`：計算 a 除以 b 的餘數
+- `gcd(a, b)`：計算 a 和 b 的最大公因數
+- `lcm(a, b)`：計算 a 和 b 的最小公倍數
+- `factorial(a)`：計算 a 的階乘
+- `isPrime(a)`：判斷 a 是否為質數
+- `randomInt(a, b)`：獲得 a 和 b 之間的隨機整數
+
+
