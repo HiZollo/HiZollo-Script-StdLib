@@ -4,3 +4,4 @@ build
 test.hzs
 test.js
 out.js
+*.swp
