@@ -43,12 +43,13 @@ class _State {
     this.states.pop()
   }
 
-  add(__k) {
+  add(...__k) {
     const __i = this.trans_valid_index()
+    const add_l = __k.length
     for (let i = this.states.length - 1; i >= __i; --i) {
-      this.states[i+1] = this.states[i]
+      this.states[i+add_l] = this.states[i]
+      if (i - __i < add_l) this.states[i] = __k[i - __i]
     }
-    this.states[__i] = __k
   }
 
   remove() {
@@ -96,7 +97,7 @@ function StateGo(s, n) { s.go(n) }
 function StateAccess(s) { return s.access() }
 function StatePush(s, ...__k) { s.push(...__k) }
 function StatePop(s) { s.pop() }
-function StateAdd(s, __k) { s.add(__k) }
+function StateAdd(s, ...__k) { s.add(...__k) }
 function StateRemove(s) { s.remove() }
 function StateStringify(s, __sep = ',') { return s.stringify(__sep) }
 function StateNowPos(s) { return s.nowPosition() }
