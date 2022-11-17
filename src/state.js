@@ -35,6 +35,12 @@ class _State {
     return this.states[k]
   }
 
+  set(n) {
+    const k = this.trans_valid_index()
+
+    this.states[k] = n
+  }
+
   push(...__k) {
     this.states = [...this.states, ...__k]
   }
@@ -52,14 +58,14 @@ class _State {
     }
   }
 
-  remove() {
+  remove(n) {
     const __i = this.trans_valid_index()
     const __ls = this.states.length - 1
     for (let i = __i; i < __ls; ++i) {
-      this.states[i] = this.states[i + 1];
+      this.states[i] = this.states[i + n];
     }
 
-    this.pop()
+    for (let i = 0; i < n; ++i) this.pop()
   }
 
   stringify(__sep) {
@@ -90,15 +96,16 @@ function newState() {
   return new _State()
 }
 
-function StateNext(s) { s.next() }
-function StatePrev(s) { s.prev() }
-function StateMove(s, n) { s.move(n) }
-function StateGo(s, n) { s.go(n) }
-function StateAccess(s) { return s.access() }
-function StatePush(s, ...__k) { s.push(...__k) }
-function StatePop(s) { s.pop() }
-function StateAdd(s, ...__k) { s.add(...__k) }
-function StateRemove(s) { s.remove() }
-function StateStringify(s, __sep = ',') { return s.stringify(__sep) }
-function StateNowPos(s) { return s.nowPosition() }
+function StateNext(_S) { _S.next() }
+function StatePrev(_S) { _S.prev() }
+function StateMove(_S, n) { _S.move(n) }
+function StateGo(_S, n) { _S.go(n) }
+function StateAccess(_S) { return _S.access() }
+function StateSet(_S, n) { return _S.set(n) }
+function StatePush(_S, ...__k) { _S.push(...__k) }
+function StatePop(_S) { _S.pop() }
+function StateAdd(_S, ...__k) { _S.add(...__k) }
+function StateRemove(_S, n = 0) { s.remove(n) }
+function StateStringify(_S, __sep = ',') { return _S.stringify(__sep) }
+function StateNowPos(_S) { return _S.nowPosition() }
 function SizeOfState(s) { return s.size() }
