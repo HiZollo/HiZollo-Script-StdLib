@@ -6,6 +6,12 @@ class _State {
   constructor() {
     this.states = []
     this.index = 0
+    
+    /***** Standard Library Container Tag *****/
+    this.__std = {
+      container_type: "state",
+      state: true
+    }
   }
 
   trans_valid_index() {
@@ -88,6 +94,13 @@ class _State {
     return this.states.length
   }
 
+  static is_state_con(_Con) {
+    return _Con.__std && _Con.__std.container_type === "state" && _Con.__std.state
+  }
+}
+
+function __check_con_type(_S) {
+  if (!_State.is_state_con(_S)) throw Error("Not State Container")
 }
 
 
@@ -96,16 +109,16 @@ function newState() {
   return new _State()
 }
 
-function StateNext(_S) { _S.next() }
-function StatePrev(_S) { _S.prev() }
-function StateMove(_S, n) { _S.move(n) }
-function StateGo(_S, n) { _S.go(n) }
-function StateAccess(_S) { return _S.access() }
-function StateSet(_S, n) { return _S.set(n) }
-function StatePush(_S, ...__k) { _S.push(...__k) }
-function StatePop(_S) { _S.pop() }
-function StateAdd(_S, ...__k) { _S.add(...__k) }
-function StateRemove(_S, n = 1) { s.remove(n) }
-function StateStringify(_S, __sep = ',') { return _S.stringify(__sep) }
-function StateNowPos(_S) { return _S.nowPosition() }
-function SizeOfState(s) { return s.size() }
+function StateNext(_S) { __check_con_type(_S); _S.next() }
+function StatePrev(_S) { __check_con_type(_S); _S.prev() }
+function StateMove(_S, n) { __check_con_type(_S); _S.move(n) }
+function StateGo(_S, n) { __check_con_type(_S); _S.go(n) }
+function StateAccess(_S) { __check_con_type(_S); return _S.access() }
+function StateSet(_S, n) { __check_con_type(_S); return _S.set(n) }
+function StatePush(_S, ...__k) { __check_con_type(_S); _S.push(...__k) }
+function StatePop(_S) { __check_con_type(_S); _S.pop() }
+function StateAdd(_S, ...__k) { __check_con_type(_S); _S.add(...__k) }
+function StateRemove(_S, n = 1) { __check_con_type(_S); s.remove(n) }
+function StateStringify(_S, __sep = ',') { __check_con_type(_S); return _S.stringify(__sep) }
+function StateNowPos(_S) { __check_con_type(_S); return _S.nowPosition() }
+function SizeOfState(s) { __check_con_type(s); return s.size() }
