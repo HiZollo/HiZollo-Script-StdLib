@@ -105,7 +105,7 @@ function StateSet(_S, n) { return _S.set(n) }
 function StatePush(_S, ...__k) { _S.push(...__k) }
 function StatePop(_S) { _S.pop() }
 function StateAdd(_S, ...__k) { _S.add(...__k) }
-function StateRemove(_S, n = 0) { s.remove(n) }
+function StateRemove(_S, n = 1) { s.remove(n) }
 function StateStringify(_S, __sep = ',') { return _S.stringify(__sep) }
 function StateNowPos(_S) { return _S.nowPosition() }
 function SizeOfState(s) { return s.size() }
