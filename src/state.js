@@ -97,6 +97,18 @@ class _State {
   static is_state_con(_Con) {
     return _Con.__std && _Con.__std.container && _Con.__std.container_type === "std.state"
   }
+
+  toString() {
+    let _o = '['
+    const _i = this.trans_valid_index()
+    for (let i = 0; i < this.states.length; ++i) {
+      if (i !== 0) _o += ', '
+      if (i === _i) _o += '*'
+      _o += `${this.states[i]}`
+    }
+    _o += ']'
+    return _o
+  }
 }
 
 function __check_con_type(_S) {
