@@ -9,8 +9,8 @@ class _State {
     
     /***** Standard Library Container Tag *****/
     this.__std = {
-      container_type: "state",
-      state: true
+      container: true,
+      container_type: "std.state"
     }
   }
 
@@ -95,7 +95,7 @@ class _State {
   }
 
   static is_state_con(_Con) {
-    return _Con.__std && _Con.__std.container_type === "state" && _Con.__std.state
+    return _Con.__std && _Con.__std.container && _Con.__std.container_type === "std.state"
   }
 }
 
