@@ -1,6 +1,10 @@
 /***** State Module for HiZollo Script *****/
 /***** Implemented by HiZollo Dev Team *****/
 
+/***** Declare Module *****/
+/***** Used internally in Official Implementation *****/
+const __info__ = global.hzs_std.__module__.state = {}
+
 /***** State Class Implementation *****/
 class _State {
   constructor() {
@@ -115,6 +119,8 @@ function __check_con_type(_S) {
   if (!_State.is_state_con(_S)) throw Error("Not State Container")
 }
 
+__info__.imported = true
+__info__._State = _State
 
 /***** HiZollo Script Interface Function *****/
 function newState() {
