@@ -1,38 +1,57 @@
-/***** Array Module for HiZollo Script *****/
-/***** Implemented by HiZollo Dev Team *****/
+(function () {
+  function __assert_array_type(_Con) {
+    if (!Array.isArray(_Con))
+      throw new HZSRuntimeError("Not Raw Array")
+  }
 
-function newArray() {
-	return [];
-}
+  __hzs_export("std.Array", {
+    newArray: function () {
+      return []
+    },
 
-function size(arr) {
-	return arr.length;
-}
+    ArrayPush: function (_a, ...__k) {
+      __assert_array_type(_a)
+      _a.push(...__k)
+    },
 
-function _check_arr_index(arr, num) {
-	if (num >= size(arr)) throw new Error("Segmetation Fault");
-}
+    ArrayPop: function (_a) {
+      __assert_array_type(_a)
+      return _a.pop()
+    },
 
-function get(arr, num) {
-	_check_arr_index(arr, num);
+    ArrayGet: function (_a, n) {
+      __assert_array_type(_a)
+      return _a[n]
+    },
 
-	return arr[num];
-}
+    ArraySet: function (_a, n, v) {
+      __assert_array_type(_a)
+      _a[n] = v
+    },
 
-function modify(arr, num, content) {
-	_check_arr_index(arr, num);
+    ArrayInsert: function (_a, n, ...__k) {
+      __assert_array_type(_a)
+      _a.splice(n, 0, ...__k)
+    },
 
-	arr[num] = content;
-}
+    ArrayRemove: function (_a, n, l = 1) {
+      __assert_array_type(_a)
+      _a.splice(n, l)
+    },
 
-function add(arr, ...items) {
-	items.forEach(i => arr.push(i));
-}
+    ArraySize: function (_a) {
+      __assert_array_type(_a)
+      return _a.length
+    },
 
-function top(arr) {
-	return get(arr, size(arr) - 1);
-}
+    ArraySlice: function (_a, start, end) {
+      __assert_array_type(_a)
+      return _a.slice(start, end)
+    },
 
-function pop(arr) {
-	arr.pop();
-}
+    ArrayJoin: function (_a, __sep = ',') {
+      __assert_array_type(_a)
+      return _a.join(__sep)
+    }
+  })
+})()
