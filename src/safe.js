@@ -22,7 +22,6 @@
         const originalCode = this.err?.code ?? "UNKNOWN_ERROR"
         throw new HZSRuntimeError("UNSAFE_UNWRAP", { 
           originalCode, 
-          message: "試圖對發生錯誤的 Safe 容器強行取值" 
         })
       }
       return this.val;
