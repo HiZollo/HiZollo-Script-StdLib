@@ -52,6 +52,16 @@
     ArrayJoin: function (_a, __sep = ',') {
       __assert_array_type(_a)
       return _a.join(__sep)
+    }, 
+
+    ArrayToState: function (_a) {
+      if (!globalThis.__hzs__.__module__.State)
+        throw new HZSRuntimeError("State is not imported")
+
+      const s = new globalThis.__hzs__.__data__.State()
+      globalThis.__hzs__.__data__.__states.add(s)
+      s.push(..._a)
+      return s
     }
   })
 })()
