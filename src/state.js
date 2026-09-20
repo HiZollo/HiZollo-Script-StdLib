@@ -131,6 +131,6 @@
     StateRemove: function (_S, n = 1) { __assert_type(_S, State); _S.remove(n) },
     StateStringify: function (_S, __sep = ',') { __assert_type(_S, State); return _S.stringify(__sep) },
     StateNowPos: function (_S) { __assert_type(_S, State); return _S.nowPosition() },
-    SizeOfState: function (_S) { __assert_type(_S, State); return s.size() }
+    SizeOfState: function (_S) { __assert_type(_S, State); return _S.size() }
   })
 })()
