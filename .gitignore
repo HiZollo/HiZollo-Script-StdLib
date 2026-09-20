@@ -5,3 +5,4 @@ test.hzs
 test.js
 out.js
 *.swp
+src/core.js
