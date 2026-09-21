@@ -79,7 +79,7 @@
     return valueOr(safe(fnName, ...args), defaultValue);
   }
 
-  __hzs_export("std.Safe", {
+  __hzs_export("std.safe", {
     safe: safe,
     safeOr: function (defaultValue, fnName, ...args) { return valueOr(safe(fnName, ...args), defaultValue) },
     hasError: function(obj) { __assert_type(obj, Safe); return obj.hasError(); },
