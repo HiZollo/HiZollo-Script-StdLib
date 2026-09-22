@@ -1,6 +1,6 @@
 (function () {
   const ArrayRef = {
-    CONTAINER_NAME = "Array",
+    CONTAINER_NAME: "Array",
     is_valid(obj) { return Array.isArray(obj) }
   }
 
