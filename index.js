@@ -10,15 +10,11 @@ if (!existsSync('./build')) {
 }
 
 for (const file of files) {
-	console.log(`[${file}] 讀取檔案中⋯⋯`);
 	const code = readFileSync(`./src/${file}`, 'utf-8');
-	console.log(`[${file}] 檔案讀取完畢`);
-	console.log(`[${file}] 最小化中⋯⋯`);
 	const result = Uglify.minify(code);
 
 	if (!result.error) {
 		console.log(`[${file}] 最小化完畢`);
-		console.log(`[${file}] 輸出至 /build/${file}⋯⋯`);
 		writeFileSync(`./build/${file}`, result.code);
 		console.log(`[${file}] 已輸出`);
 	} else {
