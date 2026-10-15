@@ -140,12 +140,6 @@
   function randomInt(min, max) {
     return ~~(random() * (max - min + 1) + min);
   }
-
-  function decimal(a, b = 0) {
-    a = ~~(a);
-    b = ~~(b);
-    return parseFloat(`${a}.${b}`);
-  }
   /**/
 
   __hzs_export("std.Math", {
@@ -158,6 +152,6 @@
     sinh, cosh, tanh, coth, sech, csch,
     arcsinh, arccosh, arctanh, arccoth, arcsech, arccsch,
     abs, random, ceil, floor, round,
-    mod, gcd, lcm, factorial, isPrime, randomInt, decimal
+    mod, gcd, lcm, factorial, isPrime, randomInt
   })
 })()
