@@ -85,6 +85,7 @@
     }, 
 
     ArrayToState: function (_a) {
+      __assert_type(_a, ArrayRef)
       if (!globalThis.__hzs__.__module__.State)
         throw new HZSRuntimeError("MODULE_NOT_IMPORTED", { source: "ArrayToState", requires: "State" })
 
