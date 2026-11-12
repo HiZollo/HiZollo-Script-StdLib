@@ -14,10 +14,10 @@
   }
 
   function __to_index(key) {
-    if (typeof key === "number" && Number.isSafeInteger(key) && key >= 0) return key;
+    if (typeof key === "number" && Number.isInteger(key) && key >= 0 && key < 0xFFFFFFFF) return key;
     if (typeof key === "string") {
       const index = parseInt(key, 10)
-      if (Number.isSafeInteger(index) && index >= 0) return index
+      if (Number.isInteger(index) && index >= 0 && index < 0xFFFFFFFF) return index
     }
 
     throw new HZSRuntimeError("INVALID_ARRAY_INDEX", {
