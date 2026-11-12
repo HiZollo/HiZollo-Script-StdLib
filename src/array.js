@@ -65,7 +65,7 @@
 
     ArrayRemove: function (_a, n, l = 1) {
       __assert_type(_a, ArrayRef)
-      Reflect.apply(Array.prototype.splic, _a, [n, l])
+      Reflect.apply(Array.prototype.splice, _a, [n, l])
     },
 
     ArraySize: function (_a) {
