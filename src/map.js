@@ -29,7 +29,7 @@
     }
 
     static to_state(arr) {
-      if (!globalThis.__hzs__.__module__.State) // State is not imported
+      if (!__hzs_has_module("State"))
         throw new HZSRuntimeError("MODULE_NOT_IMPORTED", { source: "Map.to_state", requires: "State" })
 
       const s = new globalThis.__hzs__.__data__.State()
