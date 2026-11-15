@@ -1,3 +1,4 @@
+// #require "__container"
 (function () {
   const __safeContainers = new WeakSet();
 
@@ -49,15 +50,6 @@
 
     static is_valid(obj) {
       return __safeContainers.has(obj);
-    }
-  }
-
-  function __assert_type(obj, ClassRef) {
-    if (!ClassRef.is_valid(obj)) {
-      throw new HZSRuntimeError("INCORRECT_CONTAINER", {
-        expect: ClassRef.CONTAINER_NAME,
-        received: obj?.constructor?.CONTAINER_NAME ?? (obj === null ? "null" : typeof obj)
-      })
     }
   }
 
