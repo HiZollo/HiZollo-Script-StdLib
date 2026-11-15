@@ -7,8 +7,6 @@
   const _slice = Array.prototype.slice;
   const _join = Array.prototype.join;
 
-  const _getPropDescriptor = Object.getOwnPropertyDescriptor;
-
   const ArrayRef = {
     CONTAINER_NAME: "Array",
     is_valid(obj) { return Array.isArray(obj) }
@@ -44,14 +42,14 @@
     ArrayGet: function (_a, n) {
       __assert_type(_a, ArrayRef)
       const index = __to_index(n);
-      const descriptor = _getPropDescriptor(_a, String(index));
+      const descriptor = __getOwnPropertyDescriptor(_a, String(index));
       return descriptor ? descriptor.value : undefined;
     },
 
     ArraySet: function (_a, n, v) {
       __assert_type(_a, ArrayRef)
       const index = __to_index(n);
-      Object.defineProperty(_a, String(index), {
+      __defineProperty(_a, String(index), {
         value: v,
         writable: true,
         enumerable: true,
