@@ -1,16 +1,17 @@
+// #require "__std"
+// #require "__container"
 (function () {
+  const _push = Array.prototype.push;
+  const _pop = Array.prototype.pop;
+  const _splice = Array.prototype.splice;
+  const _slice = Array.prototype.slice;
+  const _join = Array.prototype.join;
+
+  const _getPropDescriptor = Object.getOwnPropertyDescriptor;
+
   const ArrayRef = {
     CONTAINER_NAME: "Array",
     is_valid(obj) { return Array.isArray(obj) }
-  }
-
-  function __assert_type(obj, ClassRef) {
-    if (!ClassRef.is_valid(obj)) {
-      throw new HZSRuntimeError("INCORRECT_CONTAINER", {
-        expect: ClassRef.CONTAINER_NAME,
-        received: obj?.constructor?.CONTAINER_NAME ?? (obj === null ? "null" : typeof obj)
-      })
-    }
   }
 
   function __to_index(key) {
@@ -32,18 +33,18 @@
 
     ArrayPush: function (_a, ...__k) {
       __assert_type(_a, ArrayRef)
-      Reflect.apply(Array.prototype.push, _a, __k)
+      __apply(_push, _a, __k)
     },
 
     ArrayPop: function (_a) {
       __assert_type(_a, ArrayRef)
-      return Reflect.apply(Array.prototype.pop, _a, [])
+      return __apply(_pop, _a, [])
     },
 
     ArrayGet: function (_a, n) {
       __assert_type(_a, ArrayRef)
       const index = __to_index(n);
-      const descriptor = Object.getOwnPropertyDescriptor(_a, String(index));
+      const descriptor = _getPropDescriptor(_a, String(index));
       return descriptor ? descriptor.value : undefined;
     },
 
@@ -60,12 +61,12 @@
 
     ArrayInsert: function (_a, n, ...__k) {
       __assert_type(_a, ArrayRef)
-      Reflect.apply(Array.prototype.splice, _a, [n, 0].concat(__k))
+      __apply(_splice, _a, [n, 0].concat(__k))
     },
 
     ArrayRemove: function (_a, n, l = 1) {
       __assert_type(_a, ArrayRef)
-      Reflect.apply(Array.prototype.splice, _a, [n, l])
+      __apply(_splice, _a, [n, l])
     },
 
     ArraySize: function (_a) {
@@ -75,13 +76,12 @@
 
     ArraySlice: function (_a, start, end) {
       __assert_type(_a, ArrayRef)
-      return Reflect.apply(Array.prototype.slice, _a, [start, end])
+      return __apply(_slice, _a, [start, end])
     },
 
     ArrayJoin: function (_a, __sep = ',') {
       __assert_type(_a, ArrayRef)
-      return Reflect.apply(Array.prototype.join, _a, [__sep])
-      return _a.join(__sep)
+      return __apply(_join, _a, [__sep])
     }, 
 
     ArrayToState: function (_a) {
