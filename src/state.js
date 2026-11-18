@@ -67,9 +67,7 @@
         })
       }
 
-      const k = this.trans_valid_index()
-
-      return this.states[k]
+      return this.states[this.trans_valid_index()]
     }
 
     set(n) {
@@ -79,36 +77,29 @@
         })
       }
 
-      const k = this.trans_valid_index()
-
-      this.states[k] = n
+      this.states[this.trans_valid_index()] = n
     }
 
     push(...__k) {
       __assert_capacity(this.states.length, __k.length)
-
-      this.states = [...this.states, ...__k]
+      __apply(__push, this.states, __k)
     }
 
     pop() {
-      this.states.pop()
+      __apply(__pop, this.states, [])
     }
 
     add(...__k) {
-      const __i = this.trans_valid_index()
       const add_l = __k.length
-
       if (add_l === 0) return
 
       __assert_capacity(this.states.length, add_l)
 
-      for (let i = this.states.length - 1; i >= __i; --i) {
-        this.states[i + add_l] = this.states[i]
-      }
-
-      for (let i = 0; i < add_l; ++i) {
-        this.states[__i + i] = __k[i]
-      }
+      __apply(
+        __splice,
+        this.states,
+        [this.trans_valid_index(), 0].concat(__k)
+      )
     }
 
     remove(n) {
@@ -118,38 +109,29 @@
         })
       }
 
-      if (n === 0 || this.states.length === 0) return
-
-      const __i = this.trans_valid_index()
-      const __remove = Math.min(n, this.states.length - __i)
-
-      if (__remove === 0) return
-
-      const __new_length = this.states.length - __remove
-
-      for (let i = __i; i < __new_length; ++i) {
-        this.states[i] = this.states[i + __remove]
-      }
-
-      this.states.length = __new_length
+      __apply(
+        __splice,
+        this.states,
+        [this.trans_valid_index(), n]
+      )
     }
 
     stringify(__sep) {
       const __lg = this.states.length
-
       if (__lg === 0) return ""
 
       const __i = this.trans_valid_index()
 
-      let _s = ""
+      const __ordered = __apply(__slice, this.states, [__i])
+        .concat(__apply(__slice, this.states, [0, __i]))
 
       for (let i = 0; i < __lg; ++i) {
-        if (i !== 0) _s += __sep
-
-        _s += this.states[(__i + i) % __lg]
+        __ordered[i] += ""
       }
 
-      return _s
+      if (__lg === 1) return __ordered[0]
+
+      return __apply(__join, __ordered, [__sep + ""])
     }
 
     nowPosition() {
@@ -167,7 +149,7 @@
     static to_state(arr) {
       if (!__hzs_has_module("State"))
         throw new HZSRuntimeError("MODULE_NOT_IMPORTED", {
-          source: "Map.to_state",
+          source: "State.to_state",
           requires: "State"
         })
 
@@ -182,19 +164,18 @@
     }
 
     toString() {
-      let _o = '['
-      const _i = this.trans_valid_index()
+      const __values = __apply(__slice, this.states, [])
+      const __i = this.trans_valid_index()
 
-      for (let i = 0; i < this.states.length; ++i) {
-        if (i !== 0) _o += ', '
-        if (i === _i) _o += '*'
-
-        _o += `${this.states[i]}`
+      for (let i = 0; i < __values.length; ++i) {
+        __values[i] = `${__values[i]}`
       }
 
-      _o += ']'
+      if (__values.length !== 0) {
+        __values[__i] = `*${__values[__i]}`
+      }
 
-      return _o
+      return `[${__apply(__join, __values, [", "])}]`
     }
   }
 
