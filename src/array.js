@@ -1,27 +1,10 @@
 // #require "__std"
 // #require "__container"
+// #require "__array"
 (function () {
-  const _push = Array.prototype.push;
-  const _pop = Array.prototype.pop;
-  const _splice = Array.prototype.splice;
-  const _slice = Array.prototype.slice;
-  const _join = Array.prototype.join;
-
   const ArrayRef = {
     CONTAINER_NAME: "Array",
     is_valid(obj) { return Array.isArray(obj) }
-  }
-
-  function __to_index(key) {
-    if (typeof key === "number" && Number.isInteger(key) && key >= 0 && key < 0xFFFFFFFF) return key;
-    if (typeof key === "string") {
-      const index = parseInt(key, 10)
-      if (Number.isInteger(index) && index >= 0 && index < 0xFFFFFFFF) return index
-    }
-
-    throw new HZSRuntimeError("INVALID_ARRAY_INDEX", {
-      received: typeof key === "string" ? key : typeof key
-    });
   }
 
   __hzs_export("std.Array", {
@@ -31,12 +14,12 @@
 
     ArrayPush: function (_a, ...__k) {
       __assert_type(_a, ArrayRef)
-      __apply(_push, _a, __k)
+      __apply(__push, _a, __k)
     },
 
     ArrayPop: function (_a) {
       __assert_type(_a, ArrayRef)
-      return __apply(_pop, _a, [])
+      return __apply(__pop, _a, [])
     },
 
     ArrayGet: function (_a, n) {
@@ -59,12 +42,12 @@
 
     ArrayInsert: function (_a, n, ...__k) {
       __assert_type(_a, ArrayRef)
-      __apply(_splice, _a, [n, 0].concat(__k))
+      __apply(__splice, _a, [n, 0].concat(__k))
     },
 
     ArrayRemove: function (_a, n, l = 1) {
       __assert_type(_a, ArrayRef)
-      __apply(_splice, _a, [n, l])
+      __apply(__splice, _a, [n, l])
     },
 
     ArraySize: function (_a) {
@@ -89,9 +72,7 @@
 
       const s = new globalThis.__hzs__.__data__.State()
       globalThis.__hzs__.__data__.__states.add(s)
-      for (let i = 0; i < _a.length; i++) {
-        s.push(_a[i]);
-      }
+      for (let i = 0; i < _a.length; i++) s.push(_a[i]);
       return s
     }
   })
