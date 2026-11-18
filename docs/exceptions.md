@@ -11,7 +11,6 @@
 ### 不是模組函式
 - 代碼：`NOT_A_MODULE_FUNCTION`
 - 額外資訊：
-  - `name`：被錯誤當成函式呼叫的物件名稱
 
 ## 容器
 ### 錯誤的容器
@@ -32,3 +31,13 @@
 - 代碼：`UNSAFE_UNWRAP`
 - 額外資訊：
     - `originalCode`：原本發生的錯誤代碼
+
+### 無效的陣列索引
+- 代碼 `INVALID_ARRAY_INDEX`
+- 額外資訊：
+    - `received`：接收到的索引或索引的型別
+
+### 無效的格式字串
+- 代碼：`INVALID_FORMAT_TEMPLATE`
+- 額外資訊：
+    - `received`：接收到的型別
