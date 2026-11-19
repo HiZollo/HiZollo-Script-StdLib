@@ -57,12 +57,12 @@
 
     ArraySlice: function (_a, start, end) {
       __assert_type(_a, ArrayRef)
-      return __apply(_slice, _a, [start, end])
+      return __apply(__slice, _a, [start, end])
     },
 
     ArrayJoin: function (_a, __sep = ',') {
       __assert_type(_a, ArrayRef)
-      return __apply(_join, _a, [__sep])
+      return __apply(__join, _a, [__sep])
     }, 
 
     ArrayToState: function (_a) {
